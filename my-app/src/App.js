@@ -4,6 +4,9 @@ import './App.css';
 import axios from 'axios';
 import logo_white_bg from './images/logo_white_bg.png';
 import {Card, Badge} from 'react-bootstrap';
+import {RangeStepInput} from 'react-range-step-input';
+import moment from 'moment'
+import {forceNumber} from './utils';
 /*import Slider from 'react-rangeslider';
 
 import 'bootstrap/dist/css/bootstrap.min.css' */
@@ -23,6 +26,7 @@ function App() {
     const [customInputFlagTemp, setCustomInputFlagTemp] = useState([]);
       /*const [groundTruths, setGroundTruths] = useState([]);*/
     const [accuracy, setAccuracy] = useState(0.00);
+    const [totalResponseTime, setTotalResponseTime] = useState("");
 
 
 
@@ -37,8 +41,9 @@ function App() {
     if((customInputFlag === 'true' && question.includes('?')) || (customInputFlag === 'false' && questionCount > 0)){
       setSubmitted(true)
       try{
-        axios.get('http://0.0.0.0:5000/predict', {
-        /* axios.get('http://127.0.0.1:5000/predict', { */
+         var requestTime = moment(new Date().toLocaleString(), 'DD-MM-YYYY hh:mm:ss');
+        /*axios.get('http://ec2-54-162-14-176.compute-1.amazonaws.com:5000/predict', { */
+         axios.get('http://127.0.0.1:5000/predict', {
           params: {
             "customInputFlag": customInputFlag,
             "questions": question,
@@ -47,6 +52,7 @@ function App() {
 
         })
         .then((response) => {
+            var responseTime = moment(new Date().toLocaleString(), 'DD-MM-YYYY hh:mm:ss');
             if(customInputFlag === 'true' && question.includes('?')){
             setFindPredictions(response.data.predictions)
             setCustom(1)
@@ -68,6 +74,9 @@ function App() {
             setCustom(0)
             setCustomFlag(false)
             setSubmitted(false)
+            var totalRespTime = responseTime.diff(requestTime, 'seconds');
+            setTotalResponseTime(totalRespTime)
+
             }
         });
       }
@@ -123,21 +132,27 @@ function App() {
   if(count===1){
   var renderAccuracy = <h3>
   <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>Prediction Accuracy: </span>
-  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(accuracy).toFixed(2)}%&nbsp;&nbsp; &nbsp;</span>
-  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;&nbsp;&nbsp;Average Accuracy: </span>
+  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(accuracy).toFixed(2)}%&nbsp;&nbsp;</span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;&nbsp;Average Accuracy: </span>
   <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(avgAccuracy).toFixed(2)}%&nbsp;&nbsp;</span>
   <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>for&nbsp;last&nbsp;</span>
   <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{count}&nbsp;</span>
-  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>prediction execution </span></h3>}
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>prediction execution </span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;Response Time: </span>
+  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{totalResponseTime}&nbsp;</span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>seconds </span></h3>}
   else {
   var renderAccuracy = <h3>
   <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>Prediction Accuracy: </span>
-  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(accuracy).toFixed(2)}%&nbsp;&nbsp; &nbsp;</span>
-  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;&nbsp;&nbsp;Average Accuracy: </span>
+  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(accuracy).toFixed(2)}%&nbsp;&nbsp;</span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;&nbsp;Average Accuracy: </span>
   <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{Number(avgAccuracy).toFixed(2)}%&nbsp;&nbsp;</span>
   <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>for&nbsp;last&nbsp;</span>
   <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{count}&nbsp;</span>
-  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>prediction executions </span></h3>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>prediction executions </span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>|&nbsp;&nbsp;Response Time: </span>
+  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{totalResponseTime}&nbsp;</span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>seconds </span></h3>
   }
   var renderResults = findPredictions.map((predictions,i) => {
      return(
@@ -163,7 +178,10 @@ function App() {
   });
    }
    else if(custom === 1 && customInputFlag=='true'){
-
+  var renderAccuracy = <h3>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>Response Time: </span>
+  <span style={{color: '#FF8319', fontFamily: 'Axiforma Bold'}}>{totalResponseTime}&nbsp;</span>
+  <span style={{color: '#4d4d4d', fontFamily: 'Axiforma Bold'}}>seconds </span></h3>
 
   var renderResults = findPredictions.map((predictions,i) => {
      return(
@@ -218,11 +236,13 @@ function App() {
             {customFlag
             ?<div><input type="text" class="form-control inputfield2" style = {{width: 380, height:30, borderRadius: 7, borderColor:'orange'}} onChange={(e) => setQuestion(e.target.value)} value={question} placeholder="Type your custom query ending with '?' to predict its tags!" /></div>
             : <div className="col-9">
-              <h1 className="num_results_h1" style={{color:'#464646'}}>No. of Stack-Overflow questions to retrieve:&nbsp;&nbsp;&nbsp;
+              <h2 className="num_results_h1" style={{color:'#464646'}}>No. of Stack-Overflow questions to retrieve:&nbsp;&nbsp;&nbsp;
+
+                <RangeStepInput min={0} max={2500} onChange={(e) => setQuestionCount(e.target.value)} value={questionCount} step={100} />&nbsp;&nbsp;
+                        &nbsp;     <input type="integer" class="form-control inputfield3" disabled = {true} style = {{borderRadius: 7, borderColor:'orange'}} onInput={(e) => setQuestionCount(e.target.value)} value={questionCount}/> </h2>
 
 
 
-              <input type="integer" class="form-control inputfield3" style = {{borderRadius: 7, borderColor:'orange'}} onInput={(e) => setQuestionCount(e.target.value)} value={questionCount}/> </h1>
              </div>
             }
 
@@ -253,7 +273,7 @@ function App() {
         <div align="center">
         {renderTags}
 
-        {customFlag? <p></p>:renderAccuracy}
+        {renderAccuracy}
         </div>
         <br /><br />
         {renderResults}
