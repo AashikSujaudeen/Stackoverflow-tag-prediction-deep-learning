@@ -7,6 +7,7 @@ import unicodedata
 import nltk
 import re
 nltk.download('punkt')
+nltk.download('stopwords')
 
 stop_words =set(stopwords.words('english'))
 stemmer = SnowballStemmer("english")

@@ -5,8 +5,6 @@ import pandas as pd
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
 from normalize import Normalize
-from flask import Flask, request, json, jsonify
-from flask_cors import CORS, cross_origin
 import logging
 
 logging.basicConfig(level=logging.DEBUG, filename='./logs/logfile_prediction.txt')
@@ -35,9 +33,9 @@ class CustomModelPrediction(object):
                 input_count += 1
                 question_ = normalize.normalize(question)
                 logging.debug('-' * (len(question) + 16))
-                #logging.debug('Test Case No.{}: {}'.format(input_count, str(question)))
+                logging.debug('Test Case No.{}: {}'.format(input_count, str(question)))
                 predicted_tag = self.tag_predictor(question_)
-                #logging.debug('Predicted Tags: {}'.format(predicted_tag))
+                logging.debug('Predicted Tags: {}'.format(predicted_tag))
                 prediction_list.append({'que_no':input_count,'questions':str(question),'predicted_tags':predicted_tag})
 
                 #logging.debug('')
@@ -59,11 +57,11 @@ class CustomModelPrediction(object):
                 input_count += 1
                 test_case = idx
                 question = str(test_input[test_case])
-                #logging.debug('')
-                #logging.debug('-' * 100)
-                #logging.debug('Test Case No.{}:'.format(input_count))
-                #logging.debug("Question ID: {}".format(test_case))
-                #logging.debug('Question: {}'.format(question))
+                logging.debug('')
+                logging.debug('-' * 100)
+                logging.debug('Test Case No.{}:'.format(input_count))
+                logging.debug("Question ID: {}".format(test_case))
+                logging.debug('Question: {}'.format(question))
                 predicted_tag = self.tag_predictor(normalize.normalize_(question))
                 predicted_tag_list.append(predicted_tag)
                 ground_truth = self._tag_encoder.inverse_transform(np.array([self._y_test[test_case]]))
@@ -93,8 +91,8 @@ class CustomModelPrediction(object):
                 input_predicted_list.append([input_count, ground_truth, predicted_tag,score])
 
                 # log the ground truth & prediction
-                #logging.debug('Predicted: ' + str(predicted_tag))
-                #logging.debug('Ground Truth: ' + str(ground_truth))
+                logging.debug('Predicted: ' + str(predicted_tag))
+                logging.debug('Ground Truth: ' + str(ground_truth))
                 logging.debug('\n')
 
 
@@ -231,6 +229,10 @@ if __name__ == '__main__':
 """
 
 # For Flask API
+
+from flask import Flask, request, json, jsonify
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -266,7 +268,7 @@ def get_prediction():
 
 if __name__ == '__main__':
     # For running in local
-    # app.run(debug=True)
+    #app.run(debug=True)
     
     # For running on cloud
     app.run(host='0.0.0.0', port=5000)
