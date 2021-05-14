@@ -37,4 +37,8 @@ I tried several supervised classification machine learning algorithms on oneVsRe
 9. After completing untiil step 8, both api and frontend servers will be up and running. Therefore, the application can be tested by connecting to the prediction page using the link http://instance-name:3000/ in a new browser session. The instance-name can be different each time the AWS instance is restarted (the instance name or aws address can be made static by opting Elastic IP Address on AWS console which is not the scope of this project).
 
 ## Metrics
+### Offline Metrics:
+Accuracy
 
+### Online Metrics:
+Average Accuracy, Response Time
