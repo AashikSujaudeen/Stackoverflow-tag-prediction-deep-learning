@@ -16,5 +16,9 @@ which also need to be taken care when predicting the accurate tag. Any inefficie
 mess and bring down the user traffic to the website. Therefore, efficient tag prediction is business
 critical for Stack Overflow website.
 
+## Machine Learning Modelling Interpretation
+
 ## Proposed Architecture
-![alt text](http://url/to/img.png)Architecture.png
+![Architecture](https://github.com/AashikSujaudeen/Stackoverflow-tag-prediction-deep-learning/blob/master/Architecture.png)
+
+I tried several machine learning algorithms on 
