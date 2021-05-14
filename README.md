@@ -16,9 +16,25 @@ which also need to be taken care when predicting the accurate tag. Any inefficie
 mess and bring down the user traffic to the website. Therefore, efficient tag prediction is business
 critical for Stack Overflow website.
 
-## Machine Learning Modelling Interpretation
+## Machine Learning Problem Interpretation
+This is a problem that involves training a machine learning model using the labelled data and predicting the tags. An input record can have multiple tags as the title and question posted by the user can be related to multiple technologies. For an instance, a question is asked on python based tensorflow related error, it can be classified as 'tensorflow', 'deep learning', 'python'. So it is essential to train the model to learn and predict/classify all possible tags for each input record. Therefore, it is a supervised multilabel classification problem. For data wrangling steps, sklearnpreprocessing, keras text preprocessing, Natural Language Tool Kit (NLTK), beautiful re soup some of the key libraries used.  
 
 ## Proposed Architecture
 ![Architecture](https://github.com/AashikSujaudeen/Stackoverflow-tag-prediction-deep-learning/blob/master/Architecture.png)
 
-I tried several machine learning algorithms on 
+## Algorithm Evaluation & Selection
+I tried several supervised classification machine learning algorithms on oneVsRest classifier but got less accuracy as the dataset is super imbalanced and there is no hard truth or hard false in the predicteded labels on many instances; also, the learning rate was very less. At the end, I opted for deep learning approach with LSTM (Long SHort Term Memory) so that my model can learn and remember efficiently for better prediction. Technically, I used tensorflow keras sequential LSTM in the deep learning model.
+
+## Steps to Run:
+1. Create a session in Putty to connect with AWS instance.
+2. Navigate to stackoverflowapp folder using command: cd stackoverflowapp
+3. Activate the virtual environment using command: conda activate production-deployment-so-dl
+4. Run the app.py python file using command: python3 app.py
+5. Running app.py will internally start the flask server and the running api will be ready to get the request and post the response.
+6. Create another session in Putty with the AWS instance and repeat step 2 and 3.
+7. Navigate to frontend folder 'my-app' by using command: cd my-app
+8. Start the node js server using command: npm start
+9. After completing untiil step 8, both api and frontend servers will be up and running. Therefore, the application can be tested by connecting to the prediction page using the link http://instance-name:3000/ in a new browser session. The instance-name can be different each time the AWS instance is restarted (the instance name or aws address can be made static by opting Elastic IP Address on AWS console which is not the scope of this project).
+
+## Metrics
+
