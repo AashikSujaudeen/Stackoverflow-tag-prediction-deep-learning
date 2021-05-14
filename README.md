@@ -17,4 +17,4 @@ mess and bring down the user traffic to the website. Therefore, efficient tag pr
 critical for Stack Overflow website.
 
 ## Proposed Architecture
-
+![alt text](http://url/to/img.png)Architecture.png
