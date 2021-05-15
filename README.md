@@ -44,6 +44,8 @@ Accuracy
 Average Accuracy, Response Time
 
 ## Demo
-https://user-images.githubusercontent.com/49852589/118287568-90fa7700-b4a1-11eb-8570-3a3ccdd6dbe2.mp4
+https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
+
+
 
 
