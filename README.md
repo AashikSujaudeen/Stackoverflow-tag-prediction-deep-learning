@@ -44,11 +44,12 @@ I tried several supervised classification machine learning algorithms on oneVsRe
 6. Copy the content from my-app/src of the cloned directory and replace the content of 'my-app/src' of the recently set up React js 'my-app/src' on your machine
 
 ## Steps to Run (on local machine)
-1. In one terminal on virtualenv location, run the command "python preprocess.py"
-2. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
-3. Post the model training, it is time for running the model prediction by using command "python app.py"
-4. In another terminal in parallel, you can start the frontend server by navigating to my-app folder (cd my-app)  and running the command "npm start"
-5. Now a web browser session will be opened on the address http://localhost:3000 where the Stack-overflow tag predictor application running.
+1. Download the Stack-overflow dataset 'trian.csv' and place the csv file under 'datasets' directory location.
+2. In one terminal on virtualenv location, run the command "python preprocess.py"
+3. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
+4. Post the model training, it is time for running the model prediction by using command "python app.py"
+5. In another terminal in parallel, you can start the frontend server by navigating to my-app folder (cd my-app)  and running the command "npm start"
+6. Now a web browser session will be opened on the address http://localhost:3000 where the Stack-overflow tag predictor application running.
 6 .Happy prediction!
 
 ## Steps to Run (on already deployed cloud version):
@@ -68,6 +69,10 @@ Accuracy
 
 ### Online Metrics:
 Average Accuracy, Response Time
+Note: As the data is very imbalanced and there is no hard truth or hard false on prediction w.r.t. multilabel classification, the prediction is considered as correct if at least one tag is predicted correctly when compared with respective ground truth.
+
+## Model Evaluation & Model Training
+The above mentioned online metrics Average accuracy and the Response time can be used to monitor the production deployed model for model eavaluation. Upon the model drift breaches the threshold %, the engineer can plan for the model retraining using the updated dataset and further improvements in the model.
 
 ## Demo
 https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
