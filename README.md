@@ -77,6 +77,6 @@ The above mentioned online metrics Average accuracy and the Response time can be
 ## Demo
 https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
 
-
-
+## Future Enhancements & Conclusions:
+The model can be further enhanced to make it as a stack-overflow search engine along with the already created tag predictor solution. So when the custom question is inputted, the model will predict the applicable tags and also list downs the related stack-overflow disucussion links related to the search question. Also different State of the Art (SOTA) models can be tried using transfer learning like GENSIM word2vec model to get high accuracy and efficient solution. 
 
