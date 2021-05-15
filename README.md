@@ -25,7 +25,33 @@ This is a problem that involves training a machine learning model using the labe
 ## Algorithm Evaluation & Selection
 I tried several supervised classification machine learning algorithms on oneVsRest classifier but got less accuracy as the dataset is super imbalanced and there is no hard truth or hard false in the predicteded labels on many instances; also, the learning rate was very less. At the end, I opted for deep learning approach with LSTM (Long SHort Term Memory) so that my model can learn and remember efficiently for better prediction. Technically, I used tensorflow keras sequential LSTM in the deep learning model.
 
-## Steps to Run:
+## Installation Steps
+1. Clone the repository using git clone https://github.com/AashikSujaudeen/Stackoverflow-tag-prediction-deep-learning.git
+2. Virtual Environment Set up: Create a virtual environment and activate the same using below commands:
+   conda create --name stackoverflow python=3.8
+3. Check local system pre-requisites CUDNN and CUDA for tensorflow 2.4 installation. Also please ensure the compatible CUDNN & CUDA are installed based on your machine type and tensorflow 2.2 above compatibility.
+4. PYTHON Package & API Server - Installations: Install the required python packages using command: "pip install -r requirements.txt". It will also install the flask server required for the API set up.
+5. Frontend Server & Packages - Installation & Set up: Install the node js server and set up by running the below commands
+    a) Server:
+      sudo yum install -y gcc-c++ make
+      curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
+      sudo yum install -y nodejs
+    b) Set up React js:
+      npx create-react-app my-app
+      cd my-app
+    c) Install required react js libraries by running the below command:
+      npm install axios react-bootstrap-validation react-range-step-input semantic-ui-css react-loader-spinner react-promise-tracker react-progress-button --save
+6. Copy the content from my-app/src of the cloned directory and replace the content of 'my-app/src' of the recently set up React js 'my-app/src' on your machine
+
+## Steps to Run (on local machine)
+1. In one terminal on virtualenv location, run the command "python preprocess.py"
+2. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
+3. Post the model training, it is time for running the model prediction by using command "python app.py"
+4. In another terminal in parallel, you can start the frontend server by navigating to my-app folder (cd my-app)  and running the command "npm start"
+5. Now a web browser session will be opened on the address http://localhost:3000 where the Stack-overflow tag predictor application running.
+6 .Happy prediction!
+
+## Steps to Run (on already deployed cloud version):
 1. Create a session in Putty to connect with AWS instance.
 2. Navigate to stackoverflowapp folder using command: cd stackoverflowapp
 3. Activate the virtual environment using command: conda activate production-deployment-so-dl
