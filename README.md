@@ -1,7 +1,7 @@
 # StackOverflow-tag-prediction-deep-learning
 
 ## Problem Statement
-Stack Overflow is a largest, most trusted online community for program developers to learn, share their
+Stack Overflow is a largest, most trusted online community for program developers to post the issues, get answers for the issues, learn, share their
 programming knowledge, and build their careers. It is something which every programmer uses one way,
 or another.
 
@@ -44,6 +44,8 @@ Accuracy
 Average Accuracy, Response Time
 
 ## Demo
-https://user-images.githubusercontent.com/49852589/118287568-90fa7700-b4a1-11eb-8570-3a3ccdd6dbe2.mp4
+https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
+
+
 
 
