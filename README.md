@@ -17,7 +17,7 @@ mess and bring down the user traffic to the website. Therefore, efficient tag pr
 critical for Stack Overflow website.
 
 ## Machine Learning Problem Interpretation
-This is a problem that involves training a machine learning model using the labelled data and predicting the tags. An input record can have multiple tags as the title and question posted by the user can be related to multiple technologies. For an instance, a question is asked on python based tensorflow related error, it can be classified as 'tensorflow', 'deep learning', 'python'. So it is essential to train the model to learn and predict/classify all possible tags for each input record. Therefore, it is a supervised multilabel classification problem. For data wrangling steps, sklearnpreprocessing, keras text preprocessing, Natural Language Tool Kit (NLTK), beautiful re soup some of the key libraries used.  
+This is a problem that involves training a machine learning model using the labelled data and predicting the tags. An input record can have multiple tags as the title and question posted by the user can be related to multiple technologies. For an instance, a question is asked on python based tensorflow related error, it can be classified as 'tensorflow', 'deep learning', 'python'. So it is essential to train the model to learn and predict/classify all possible tags for each input record. Therefore, it is a supervised multilabel classification problem. For data wrangling steps, sklearn preprocessing, keras text preprocessing, Natural Language Tool Kit (NLTK), beautiful re soup some of the key libraries used.  
 
 ## Proposed Architecture
 ![Architecture](https://github.com/AashikSujaudeen/Stackoverflow-tag-prediction-deep-learning/blob/master/Architecture.png)
