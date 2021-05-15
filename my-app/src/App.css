@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.tables {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.tables > div {
+  flex-basis: 50%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}

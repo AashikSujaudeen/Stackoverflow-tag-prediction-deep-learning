@@ -5,10 +5,32 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
+import { usePromiseTracker } from "react-promise-tracker";
+import Loader from 'react-loader-spinner';
 
+const LoadingIndicator = props => {
+  const { promiseInProgress } = usePromiseTracker();
+
+   return (
+    promiseInProgress &&
+    <div
+      style={{
+        width: "100%",
+        height: "100",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <Loader type="ThreeDots" color="#ffbc40" height="100" width="100" />
+    </div>
+  );
+ }
 
 ReactDOM.render(
   <React.StrictMode>
+
+    <LoadingIndicator/>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

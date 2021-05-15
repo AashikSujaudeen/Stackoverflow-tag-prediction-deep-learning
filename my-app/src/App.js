@@ -10,6 +10,10 @@ import {forceNumber} from './utils';
 /*import Slider from 'react-rangeslider';
 
 import 'bootstrap/dist/css/bootstrap.min.css' */
+import ProgressButton from 'react-progress-button'
+import { trackPromise } from 'react-promise-tracker';
+
+
 
 function App() {
     const [submitted, setSubmitted] = useState(false);
@@ -41,8 +45,10 @@ function App() {
     if((customInputFlag === 'true' && question.includes('?')) || (customInputFlag === 'false' && questionCount > 0)){
       setSubmitted(true)
       try{
-         var requestTime = moment(new Date().toLocaleString(), 'DD-MM-YYYY hh:mm:ss');
+         var requestTime = moment();
         /*axios.get('http://ec2-54-162-14-176.compute-1.amazonaws.com:5000/predict', { */
+
+         trackPromise(
          axios.get('http://127.0.0.1:5000/predict', {
           params: {
             "customInputFlag": customInputFlag,
@@ -52,12 +58,14 @@ function App() {
 
         })
         .then((response) => {
-            var responseTime = moment(new Date().toLocaleString(), 'DD-MM-YYYY hh:mm:ss');
+            var responseTime = moment();
             if(customInputFlag === 'true' && question.includes('?')){
             setFindPredictions(response.data.predictions)
             setCustom(1)
             setCustomFlag(true)
             setSubmitted(false)
+            var totalRespTime = responseTime.diff(requestTime, 'seconds');
+            setTotalResponseTime(totalRespTime)
             }
             else if (customInputFlag === 'false' && questionCount > 0) {
             setFindPredictions(response.data.predictions)
@@ -78,7 +86,7 @@ function App() {
             setTotalResponseTime(totalRespTime)
 
             }
-        });
+        }));
       }
       catch(e){
         console.log('Error: ' + e)
@@ -207,6 +215,7 @@ function App() {
   });
    }
 
+
   return (
 
 
@@ -224,7 +233,7 @@ function App() {
           <div class="form-control inputfield1" >
             <h1 className="num_results_h2" style={{color: '#464646'}}>Choose the question input type: </h1>
             <h3  style={{color:'#464646'}}><input type="radio" value="false" id="stack"
-              onChange={e => setCustomInputFlag(e.target.value)} name="customInputFlag" defaultChecked />
+              onChange={(e) => setCustomInputFlag(e.target.value, setQuestionCount(0))} name="customInputFlag" defaultChecked />
             <label for="stack">&nbsp;Stack Overflow Dataset- Questions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="radio" value="true" id="custom"
               onChange={e => setCustomInputFlag(e.target.value, setQuestion(''))} name="customInputFlag" />
@@ -238,7 +247,7 @@ function App() {
             : <div className="col-9">
               <h2 className="num_results_h1" style={{color:'#464646'}}>No. of Stack-Overflow questions to retrieve:&nbsp;&nbsp;&nbsp;
 
-                <RangeStepInput min={0} max={2500} onChange={(e) => setQuestionCount(e.target.value)} value={questionCount} step={100} />&nbsp;&nbsp;
+                <RangeStepInput min={0} max={2500}  onChange={(e) => setQuestionCount(e.target.value)}  value={questionCount} step={100} />&nbsp;&nbsp;
                         &nbsp;     <input type="integer" class="form-control inputfield3" disabled = {true} style = {{borderRadius: 7, borderColor:'orange'}} onInput={(e) => setQuestionCount(e.target.value)} value={questionCount}/> </h2>
 
 
