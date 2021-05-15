@@ -71,11 +71,11 @@ Accuracy
 Average Accuracy, Response Time
 Note: As the data is very imbalanced and there is no hard truth or hard false on prediction w.r.t. multilabel classification, the prediction is considered as correct if at least one tag is predicted correctly when compared with respective ground truth.
 
-## Model Evaluation & Model Training
-The above mentioned online metrics Average accuracy and the Response time can be used to monitor the production deployed model for model eavaluation. Upon the model drift breaches the threshold %, the engineer can plan for the model retraining using the updated dataset and further improvements in the model.
-
 ## Demo
 https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
+
+## Monitoring, Model Evaluation & Model Training
+The above mentioned online metrics Average accuracy and the Response time can be used to monitor the production deployed model for model eavaluation. Upon the model drift breaches the threshold %, the engineer can plan for the model retraining using the updated dataset and further improvements in the model.
 
 ## Future Enhancements & Conclusions:
 The model can be further enhanced to make it as a stack-overflow search engine along with the already created tag predictor solution. So when the custom question is inputted, the model will predict the applicable tags and also list downs the related stack-overflow disucussion links related to the search question. Also different State of the Art (SOTA) models can be tried using transfer learning like GENSIM word2vec model to get high accuracy and efficient solution. 
