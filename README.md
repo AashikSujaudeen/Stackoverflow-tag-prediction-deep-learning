@@ -44,7 +44,7 @@ I tried several supervised classification machine learning algorithms on oneVsRe
 6. Copy the content from my-app/src of the cloned directory and replace the content of 'my-app/src' of the recently set up React js 'my-app/src' on your machine
 
 ## Steps to Run (on local machine)
-1. Download the Stack-overflow dataset 'trian.csv' and place the csv file under 'datasets' directory location.
+1. Download the Stack-overflow dataset 'Train.csv' from the link https://www.kaggle.com/c/facebook-recruiting-iii-keyword-extraction/data?select=Train.zip and place the extracted Train.csv file under 'datasets' directory location.
 2. In one terminal on virtualenv location, run the command "python preprocess.py"
 3. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
 4. Post the model training, it is time for running the model prediction by using command "python app.py"
