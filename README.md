@@ -75,7 +75,7 @@ Note: As the data is very imbalanced and there is no hard truth or hard false on
 ## Demo
 https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-8cf2-8d4951fd77e4.mp4
 
-## Monitoring, Model Evaluation & Model Training
+## Monitoring, Model Evaluation & Model Retraining
 The above mentioned online metrics Average accuracy and the Response time can be used to monitor the production deployed model for model eavaluation. Upon the model drift breaches the threshold %, the engineer can plan for the model retraining using the updated dataset and further improvements in the model.
 
 ## Future Enhancements & Conclusion:
