@@ -44,13 +44,14 @@ I tried several supervised classification machine learning algorithms on oneVsRe
 6. Copy the content from my-app/src of the cloned directory and replace the content of 'my-app/src' of the recently set up React js 'my-app/src' on your machine
 
 ## Steps to Run (on local machine)
-1. Download the Stack-overflow dataset 'Train.csv' from the link https://www.kaggle.com/c/facebook-recruiting-iii-keyword-extraction/data?select=Train.zip and place the extracted Train.csv file under 'datasets' directory location.
-2. In one terminal on virtualenv location, run the command "python preprocess.py"
-3. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
-4. Post the model training, it is time for running the model prediction by using command "python app.py"
-5. In another terminal in parallel, you can start the frontend server by navigating to my-app folder (cd my-app)  and running the command "npm start"
-6. Now a web browser session will be opened on the address http://localhost:3000 where the Stack-overflow tag predictor application running.
-6 .Happy prediction!
+1. Complete all the steps given in above installation steps.
+2. Download the Stack-overflow dataset 'Train.csv' from the link https://www.kaggle.com/c/facebook-recruiting-iii-keyword-extraction/data?select=Train.zip and place the extracted Train.csv file under 'datasets' directory location.
+3. In one terminal on virtualenv location, run the command "python preprocess.py"
+4. In the same terminal after completion of preprocessing, train the model using the command: "python train.py"
+5. Post the model training, it is time for running the model prediction by using command "python app.py"
+6. In another terminal in parallel, you can start the frontend server by navigating to my-app folder (cd my-app)  and running the command "npm start"
+7. Now a web browser session will be opened on the address http://localhost:3000 where the Stack-overflow tag predictor application running.
+Happy prediction!
 
 ## Steps to Run (on already deployed cloud version):
 1. Create a session in Putty to connect with AWS instance.
@@ -77,6 +78,6 @@ https://user-images.githubusercontent.com/49852589/118376495-2f680480-b596-11eb-
 ## Monitoring, Model Evaluation & Model Training
 The above mentioned online metrics Average accuracy and the Response time can be used to monitor the production deployed model for model eavaluation. Upon the model drift breaches the threshold %, the engineer can plan for the model retraining using the updated dataset and further improvements in the model.
 
-## Future Enhancements & Conclusions:
+## Future Enhancements & Conclusion:
 The model can be further enhanced to make it as a stack-overflow search engine along with the already created tag predictor solution. So when the custom question is inputted, the model will predict the applicable tags and also list downs the related stack-overflow disucussion links related to the search question. Also different State of the Art (SOTA) models can be tried using transfer learning like GENSIM word2vec model to get high accuracy and efficient solution. 
 
